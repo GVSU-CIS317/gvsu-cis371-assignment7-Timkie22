@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "firebase": "^10.5.2",
+    "firebase": "^10.7.0",
     "font-awesome": "^4.7.0",
     "vercel": "^32.5.4",
     "vue": "^3.3.4",
