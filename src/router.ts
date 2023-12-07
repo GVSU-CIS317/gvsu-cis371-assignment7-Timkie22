@@ -3,8 +3,8 @@ import Home from "./Home.vue";
 import Book from "./Book.vue";
 import Kitchenware from "./Kitchenware.vue";
 import Music from "./Music.vue";
-import Login from './Login.vue';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import Login from "./Login.vue";
+import { getAuth } from 'firebase/auth';
 
 const routes = [
   {
@@ -39,19 +39,17 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   const auth = getAuth();
-  
-  onAuthStateChanged(auth, (user) => {
-    if (requiresAuth && !user) {
-      next('/login');
-    } else if (!requiresAuth && user) {
-      next('/');
-    } else {
-      next();
-    }
-  });
+  const user = auth.currentUser;
+
+  if (requiresAuth && !user) {
+    return '/login';
+  } else if (!requiresAuth && user) {
+    return '/';
+  }
 });
+
 
 export default router;

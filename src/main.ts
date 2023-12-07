@@ -21,15 +21,30 @@ const db: Firestore = getFirestore(myapp);
 
 const app = createApp(App);
 
-// Firebase Authentication
 const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    // User is signed in, you might want to store the user's info in your app's state
-    // You can also perform any on-login actions here
+    // User is signed in
+    console.log("User is signed in:", user);
+
+    // Example: Redirect to home page if not already there
+    if (router.currentRoute.value.path !== '/') {
+      router.push('/');
+    }
+
+    // Additional logic: Store user's info in your app's state or perform other actions
+    // ...
   } else {
     // User is signed out
-    // Handle any actions needed on sign out, like redirecting to the login page
+    console.log("User is signed out");
+
+    // Example: Redirect to login page if not already there
+    if (router.currentRoute.value.path !== '/login') {
+      router.push('/login');
+    }
+
+    // Additional logic: Clear user's info from your app's state or perform other actions
+    // ...
   }
 });
 

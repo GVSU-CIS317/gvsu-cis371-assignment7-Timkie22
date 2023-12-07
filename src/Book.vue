@@ -11,7 +11,7 @@
 import { ref, onBeforeMount } from "vue";
 import BookItem from "./components/BookItem.vue"; 
 import "font-awesome/css/font-awesome.min.css";
-import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
+import { collection, getDocs} from "firebase/firestore";
 import { db } from "./main.ts";
 
 interface StoreItem {
